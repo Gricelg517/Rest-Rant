@@ -11,10 +11,7 @@ function home () {
                       <div> 
                         Photo by <a href="AUTHOR_LINK">Casey Lee</a> on <a href="UNSPLASH_LINK">unsplash</a>
                    </div>  
-               </div>       
-                     
-                 
-            
+               </div>                 
                 <a href="/places">
                     <button className="btn-primary">Places Page</button>
                 </a>
