@@ -7,10 +7,24 @@ function show (data) {
             No comments yet!
         </h3>
     )
+    let rating =(
+        <h3 className="inactive">
+            Not yet rated
+        </h3>
+    )
     if (data.place.comments.length) {
+        let sumRatings = data.place.comments.reduce((tot, c) => {
+            return tot + c.stars
+          }, 0)
+          let averageRating = sumRatings / data.place.comments.length
+          rating = (
+            <h3>
+              {Math.round(averageRating)} stars
+            </h3>
+          )
         comments = data.place.comments.map(c => {
           return (
-            <div className="border">
+            <div className="border col-sm4">
               <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😊'}</h2>
               <h4>{c.content}</h4>
               <h3>
@@ -24,12 +38,17 @@ function show (data) {
     return (
         <Def>
           <main>
+            <div className="row">  
           <h1> Serving {data.place.cuisines}
             </h1>
-            <a href={'/places/${data.id}/edit'} className="btn btn-warning"> 
+            <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 
                 Edit
                 </a>
-                <form method="POST" action={'/places/${data.id}?_method=DELETE'}> 
+                <div className="col-sm-6">
+                    <h1> {data.place.name}</h1>
+                    <h2> Ratig </h2> <br/>
+                
+                <form method="POST" action={`/places/${data.id}?_method=DELETE`}> 
                     <button type="submit" className="btn btn-danger">
                         Delete
                     </button>
@@ -48,7 +67,9 @@ function show (data) {
             
             <label htmlFor="Rant">Rant</label>
                      <input type="checkbox"  name="Rant" id="Rant" requred />
-             </form>                    
+             </form> 
+             </div> 
+             </div>                   
          </main>
         </Def>
     )
