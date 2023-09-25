@@ -1,11 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-})
 
-module.exports.Place = require('./places')
-module.exports.Comment = require('./comment')
 const placeSchema = new mongoose.Schema({
     name: { type: String, required: true },
     pic: { type: String, default: 'http://placekitten.com/350/350'},
@@ -24,7 +18,5 @@ placeSchema.methods.showEstablished = function() {
     return `${this.name} has been serving ${this.city}, ${this.state} since ${this.founded}.`
   }
  
-
-
 
 module.exports = mongoose.model ('Place', placeSchema)
