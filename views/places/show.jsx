@@ -41,13 +41,14 @@ function show (data) {
             <div className="row">  
           <h1> Serving {data.place.cuisines}
             </h1>
+            <div className="col-sm-6">
+                    <h1> {data.place.name}</h1>
+                    <h2> Rating </h2> <br/>
+                    
             <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 
                 Edit
                 </a>
-                <div className="col-sm-6">
-                    <h1> {data.place.name}</h1>
-                    <h2> Ratig </h2> <br/>
-                
+                           
                 <form method="POST" action={`/places/${data.id}?_method=DELETE`}> 
                     <button type="submit" className="btn btn-danger">
                         Delete
